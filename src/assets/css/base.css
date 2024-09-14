@@ -9,13 +9,15 @@
   --color-accent-text: rgba(70, 81, 224, 1);
   --color-text-secondary: rgba(32, 31, 36, 0.64);
 
-  --button-text-primary: rgba(255, 255, 255, 1);
-  --button-text-secondary: rgba(32, 31, 36, 0.64);
-  --button-background-primary: rgba(32, 31, 36, 0.08);
-  --button-background-secondary: rgba(255, 255, 255, 0);
-
   --color-accent: rgba(78, 90, 249, 1);
   --color-accent-secondary: rgba(78, 90, 249, 0.32);
+
+  --button-text-primary: rgba(255, 255, 255, 1);
+  --button-text-secondary: rgba(32, 31, 36, 0.64);
+  --button-background-primary: var(--color-accent);
+  --button-background-secondary: rgba(255, 255, 255, 0);
+
+  --select-background-primary: rgba(32, 31, 36, 0.08);
 }
 
 /* spacings */
