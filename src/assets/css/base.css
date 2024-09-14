@@ -6,6 +6,7 @@
   --color-border-hover: rgba(78, 90, 249, 0.32);
 
   --color-text: rgba(32, 31, 36, 1);
+  --color-text-error: darkred;
   --color-accent-text: rgba(70, 81, 224, 1);
   --color-text-secondary: rgba(32, 31, 36, 0.64);
 

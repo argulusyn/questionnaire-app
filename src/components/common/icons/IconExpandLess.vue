@@ -30,8 +30,4 @@ defineProps({
   </BaseIcon>
 </template>
 
-<style scoped lang="scss">
-.base-icon {
-  fill: currentColor;
-}
-</style>
+<style scoped lang="scss"></style>

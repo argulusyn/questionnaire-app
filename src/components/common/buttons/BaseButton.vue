@@ -18,5 +18,9 @@
   padding: var(--space-1) var(--space-2);
   border: none;
   box-shadow: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
