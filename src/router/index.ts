@@ -7,7 +7,13 @@ const router = createRouter({
       path: '/',
       name: 'questionnaire-page',
       component: () => import('@/pages/QuestionnairePage.vue'),
-      children: [],
+      children: [
+        {
+          path: '/',
+          name: 'question-page',
+          component: () => import('@/pages/questionnaire/RankingQuestionPage.vue'),
+        },
+      ],
     },
   ],
 });
