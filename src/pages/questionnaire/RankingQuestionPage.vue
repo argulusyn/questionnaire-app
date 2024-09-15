@@ -1,46 +1,37 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { type PropType } from 'vue';
 import BaseQuestionPage from '@/pages/questionnaire/BaseQuestionPage.vue';
 import RankingQuestion from '@/components/questions/RankingQuestion.vue';
 
-const availableOptions = ref([
-  {
-    key: 'salaryAndBenefits',
-    label: 'Salary and benefits',
-    value: 'salaryAndBenefits',
+defineProps({
+  options: {
+    type: Array as PropType<RankingQuestionOption[]>,
+    required: true,
   },
-  {
-    key: 'workLifeBalance',
-    label: 'Work-life balance',
-    value: 'workLifeBalance',
+  title: {
+    type: String,
+    default: '',
   },
-  {
-    key: 'careerAdvancementOpportunities',
-    label: 'Career advancement opportunities',
-    value: 'careerAdvancementOpportunities',
+  helperText: {
+    type: String,
+    default: '',
   },
-  {
-    key: 'companyCulture',
-    label: 'Company culture',
-    value: 'companyCulture',
+  answersLimit: {
+    type: Number,
+    default: undefined,
   },
-  {
-    key: 'jobLocation',
-    label: 'Job location',
-    value: 'jobLocation',
-  },
-]);
-const selectedOptions = ref<RankingQuestionOption[]>([]);
+});
+
+const model = defineModel({
+  type: Array as PropType<RankingQuestionOption[]>,
+  required: true,
+});
 </script>
 
 <template>
-  <BaseQuestionPage
-    class="ranking-question-page"
-    title="Which of the following are most important when selecting a job?"
-    helper-text="Rank your top three items"
-  >
+  <BaseQuestionPage class="ranking-question-page" :title="title" :helper-text="helperText">
     <template #question>
-      <RankingQuestion v-model="selectedOptions" :options="availableOptions" :answers-limit="3" />
+      <RankingQuestion v-model="model" :options="options" :answers-limit="answersLimit" />
     </template>
   </BaseQuestionPage>
 </template>

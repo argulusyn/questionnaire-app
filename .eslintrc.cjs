@@ -11,8 +11,9 @@ module.exports = {
   ],
   rules: {
     "comma-dangle": ["error", {
-      arrays: "always",
-      objects: "always",
+      arrays: "always-multiline",
+      objects: "always-multiline",
+      functions: "always-multiline"
     },],
     "semi": ["error", "always",],
   },

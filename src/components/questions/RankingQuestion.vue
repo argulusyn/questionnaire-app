@@ -28,7 +28,10 @@ const errorMessageTimeoutId = ref<number | null>(null);
 const draggingNewOption = ref<boolean>(false);
 const availableOptions = ref<RankingQuestionOption[]>(props.options);
 
-watch(props.options, (newValue) => (availableOptions.value = newValue));
+watch(
+  () => props.options,
+  (newValue) => (availableOptions.value = newValue),
+);
 
 const slotsLimit = computed(() => props.answersLimit || props.options.length);
 const currentVisibleSlots = computed(() => slotsLimit.value - model.value.length);

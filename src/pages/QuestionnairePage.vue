@@ -2,6 +2,16 @@
 import ProgressBar from '@/components/common/ProgressBar.vue';
 import PoweredByTip from '@/components/global/PoweredByTip.vue';
 import NavigationButtons from '@/components/common/NavigationButtons.vue';
+import { useQuestionnaireConfig } from '@/composables/useQuestionnaireConfig';
+import { QuestionnaireStep } from '@/types/questionnaire';
+import { onBeforeMount } from 'vue';
+
+const { setCurrentStepId, currentStepConfig, currentStepDynamicProps, currentStepStaticProps } =
+  useQuestionnaireConfig();
+
+onBeforeMount(() => {
+  setCurrentStepId(QuestionnaireStep.importantWhenSelectingJob);
+});
 </script>
 
 <template>
@@ -10,7 +20,12 @@ import NavigationButtons from '@/components/common/NavigationButtons.vue';
     <NavigationButtons class="question-page__navigation-buttons" />
 
     <div class="question-page__content">
-      <RouterView />
+      <component
+        v-if="currentStepConfig"
+        :is="currentStepConfig.component"
+        v-bind="{ ...currentStepStaticProps, ...currentStepDynamicProps }"
+        v-on="currentStepConfig?.listeners"
+      />
     </div>
 
     <PoweredByTip class="question-page__powered-by" />
