@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import ProgressBar from '@/components/common/ProgressBar.vue';
 import PoweredByTip from '@/components/global/PoweredByTip.vue';
+import NavigationButtons from '@/components/common/NavigationButtons.vue';
 </script>
 
 <template>
   <main class="question-page">
     <ProgressBar class="question-page__progress" :value="21" />
+    <NavigationButtons class="question-page__navigation-buttons" />
 
     <div class="question-page__content">
       <RouterView />
@@ -24,6 +26,12 @@ import PoweredByTip from '@/components/global/PoweredByTip.vue';
     position: fixed;
     top: 0;
     left: 0;
+  }
+
+  &__navigation-buttons {
+    position: fixed;
+    top: 55px;
+    right: 8px;
   }
 
   &__content {

@@ -12,7 +12,7 @@ defineProps({
 <template>
   <BaseIcon :view-box="viewBox">
     <mask
-      id="mask0_282_187"
+      id="mask0_282_192"
       style="mask-type: alpha"
       maskUnits="userSpaceOnUse"
       x="0"
@@ -22,9 +22,9 @@ defineProps({
     >
       <rect width="24" height="24" />
     </mask>
-    <g mask="url(#mask0_282_187)">
+    <g mask="url(#mask0_282_192)">
       <path
-        d="M7.27502 15.2634L6.34619 14.3346L12 8.68079L17.6538 14.3346L16.725 15.2634L12 10.5384L7.27502 15.2634Z"
+        d="M12 15.3384L6.34619 9.68462L7.27502 8.7558L12 13.4808L16.725 8.7558L17.6538 9.68462L12 15.3384Z"
       />
     </g>
   </BaseIcon>
