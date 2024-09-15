@@ -24,6 +24,8 @@ const model = defineModel({
 
 const rankingQuestionContainer = ref<HTMLElement | null>(null);
 const errorMessage = ref<string | null>(null);
+const errorMessageTimeoutId = ref<number | null>(null);
+const draggingNewOption = ref<boolean>(false);
 const availableOptions = ref<RankingQuestionOption[]>(props.options);
 
 watch(props.options, (newValue) => (availableOptions.value = newValue));
@@ -40,17 +42,55 @@ onMounted(() => {
   element.style.minHeight = element.offsetHeight + 'px';
 });
 
+const canSelectMoreItems = computed(() => model.value.length < slotsLimit.value);
+
+const showErrorMessage = (message: string, timeout: number = 3000) => {
+  if (errorMessageTimeoutId.value) {
+    clearTimeout(errorMessageTimeoutId.value);
+  }
+
+  errorMessage.value = message;
+  errorMessageTimeoutId.value = setTimeout(() => {
+    errorMessage.value = null;
+    errorMessageTimeoutId.value = null;
+  }, timeout);
+};
+
+const onAvailableOptionClick = (option: RankingQuestionOption) => {
+  if (!canSelectMoreItems.value) {
+    showErrorMessage('Maximum number of elements selected');
+    return;
+  }
+
+  model.value.push(option);
+  availableOptions.value = availableOptions.value.filter((availableOption) => {
+    return availableOption.key !== option.key;
+  });
+};
+
+const onSelectedOptionClick = (option: RankingQuestionOption) => {
+  availableOptions.value.push(option);
+  model.value = model.value.filter((availableOption) => {
+    return availableOption.key !== option.key;
+  });
+};
+
+const changeNewDraggingOption = (value: boolean) => {
+  draggingNewOption.value = value;
+};
+
 const onOptionDrag = (event: DragEvent) => {
-  if (model.value.length >= slotsLimit.value) {
+  if (!canSelectMoreItems.value && draggingNewOption.value) {
     event.preventDefault();
     event.stopImmediatePropagation();
-    errorMessage.value = 'Maximum number of elements selected';
+    showErrorMessage('Maximum number of elements selected');
   }
 };
 
 const onResetClick = () => {
   model.value = [];
   availableOptions.value = props.options;
+  errorMessage.value = null;
 };
 </script>
 
@@ -71,6 +111,9 @@ const onResetClick = () => {
         tag="li"
         :label="item.label"
         role="button"
+        @dragstart="changeNewDraggingOption(true)"
+        @dragend="changeNewDraggingOption(false)"
+        @click="onAvailableOptionClick(item)"
       />
     </VueDraggable>
 
@@ -92,6 +135,7 @@ const onResetClick = () => {
         tag="li"
         :label="item.label"
         role="button"
+        @click="onSelectedOptionClick(item)"
       />
       <OptionAnswerSlot
         v-for="slot in currentVisibleSlots"
