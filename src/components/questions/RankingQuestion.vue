@@ -165,8 +165,14 @@ const onResetClick = () => {
 <style scoped lang="scss">
 .ranking-question {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 5.5rem;
+  row-gap: 2rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+
+  @media (min-width: 768px) {
+    column-gap: 5.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
 
   &__available-option ~ .ranking-question__answer-slot:last-of-type {
     display: none;

@@ -45,7 +45,7 @@ defineProps({
   }
 
   &__bottom-navigation {
-    margin-top: var(--space-12);
+    margin-top: var(--space-4);
   }
 }
 </style>

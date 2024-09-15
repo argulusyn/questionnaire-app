@@ -26,13 +26,18 @@ defineProps({
 
 <style scoped lang="scss">
 .base-option-template {
-  padding: 1.25rem;
+  padding: 0.75rem;
   border: 2px solid var(--color-border);
   border-radius: 0.5rem;
   background-color: var(--select-background-primary);
   cursor: pointer;
-  font-size: 1.1875rem;
+  font-size: 1rem;
   line-height: 1.2;
+
+  @media (min-width: 768px) {
+    padding: 1.25rem;
+    font-size: 1.1875rem;
+  }
 
   &__content {
     display: flex;
