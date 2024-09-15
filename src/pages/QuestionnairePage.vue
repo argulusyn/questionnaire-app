@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ProgressBar from '@/components/common/ProgressBar.vue';
+import PoweredByTip from '@/components/global/PoweredByTip.vue';
 </script>
 
 <template>
@@ -9,6 +10,8 @@ import ProgressBar from '@/components/common/ProgressBar.vue';
     <div class="question-page__content">
       <RouterView />
     </div>
+
+    <PoweredByTip class="question-page__powered-by" />
   </main>
 </template>
 
@@ -25,6 +28,12 @@ import ProgressBar from '@/components/common/ProgressBar.vue';
 
   &__content {
     padding: 3rem 10rem;
+  }
+
+  &__powered-by {
+    position: fixed;
+    bottom: var(--space-2);
+    right: var(--space-2);
   }
 }
 </style>

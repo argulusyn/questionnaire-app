@@ -2,7 +2,11 @@
 
 <template>
   <div class="app-text-logo">
-    <img class="app-text-logo__image" src="@/assets/images/logo.svg" alt="Logo image" />
+    <img
+      class="app-text-logo__image"
+      src="@/assets/images/logo.svg"
+      alt="Questionnaire logo image"
+    />
     <span class="app-text-logo__text">questionnaire</span>
   </div>
 </template>
