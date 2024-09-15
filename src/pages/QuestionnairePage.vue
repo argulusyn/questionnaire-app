@@ -4,7 +4,7 @@ import PoweredByTip from '@/components/global/PoweredByTip.vue';
 import NavigationButtons from '@/components/common/NavigationButtons.vue';
 import { useQuestionnaireConfig } from '@/composables/useQuestionnaireConfig';
 import { QuestionnaireStep } from '@/types/questionnaire';
-import { onBeforeMount } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 
 const { setCurrentStepId, currentStepConfig, currentStepDynamicProps, currentStepStaticProps } =
   useQuestionnaireConfig();
@@ -12,11 +12,15 @@ const { setCurrentStepId, currentStepConfig, currentStepDynamicProps, currentSte
 onBeforeMount(() => {
   setCurrentStepId(QuestionnaireStep.importantWhenSelectingJob);
 });
+
+const progress = computed(() => {
+  return currentStepConfig.value?.progress || 0;
+});
 </script>
 
 <template>
   <main class="question-page">
-    <ProgressBar class="question-page__progress" :value="21" />
+    <ProgressBar class="question-page__progress" :value="progress" />
     <NavigationButtons class="question-page__navigation-buttons" />
 
     <div class="question-page__content">

@@ -15,7 +15,7 @@ export const useQuestionnaireConfig = () => {
    * Alternatively can handle the config in a separate component, but that's for the case
    * when the questions are known beforehand (static).
    *
-   * This approach will suite better for a dynamic more complicated case when the questions might
+   * This approach will suit better for a dynamic more complicated case when the questions might
    * need to be fetched from the server
    */
   const questionnaireConfig = computed(() => {
@@ -23,6 +23,7 @@ export const useQuestionnaireConfig = () => {
       [QuestionnaireStep.importantWhenSelectingJob]: {
         id: QuestionnaireStep.importantWhenSelectingJob,
         component: RankingQuestionPage,
+        progress: 21,
         dynamicProps: {
           modelValue: computed(() => {
             return questionnaireAnswers.value[QuestionnaireStep.importantWhenSelectingJob];
@@ -51,6 +52,10 @@ export const useQuestionnaireConfig = () => {
     return currentStepConfig.value?.staticProps || {};
   });
 
+  /**
+   * This is an optimization to only recalculate currentStepDynamicProps when the answers update
+   * rather than recalculating whole questionnaireConfig
+   */
   const currentStepDynamicProps = computed(() => {
     const dynamicProps =
       currentStepConfig.value?.dynamicProps || ({} as { [key: string]: Ref | ComputedRef });
