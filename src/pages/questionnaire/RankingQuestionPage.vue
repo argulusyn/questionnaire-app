@@ -6,7 +6,7 @@ import RankingQuestion from '@/components/questions/RankingQuestion.vue';
 defineProps({
   options: {
     type: Array as PropType<RankingQuestionOption[]>,
-    required: true,
+    default: () => [],
   },
   title: {
     type: String,
@@ -24,7 +24,7 @@ defineProps({
 
 const model = defineModel({
   type: Array as PropType<RankingQuestionOption[]>,
-  required: true,
+  default: () => [],
 });
 </script>
 
