@@ -55,10 +55,15 @@ const progress = computed(() => {
 
   &__content {
     padding: 3% 9%;
-    max-width: 1440px;
 
     @media (min-width: 768px) {
       padding: 3.75% 12.5%;
+    }
+
+    @media (min-width: 1440px) {
+      padding: 3.25rem 8rem;
+      max-width: 1440px;
+      margin: 0 auto;
     }
   }
 
